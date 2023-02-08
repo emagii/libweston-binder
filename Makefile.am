@@ -40,7 +40,7 @@ AM_CFLAGS               += -Iinclude
 libweston_binder_la_LDFLAGS= $(AM_LDFLAGS)
 libweston_binder_la_CFLAGS= $(AM_CFLAGS)
 libweston_binder_la_CPPFLAGS= $(AM_CPPFLAGS)
-INSTALLdir              = $(include)
+INSTALLdir              = $(include)//usr/include/libweston-3
 # 'csource+headers-am.inc' provides the CSOURCES, HHEADERS and INSTALL_HEADERS defines
 CSOURCES = src/binder.c
 

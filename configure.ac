@@ -39,12 +39,22 @@ AC_CHECK_HEADERS( \
 	stdarg.h \
 	stdint.h \
 	ctype.h \
+	stdbool.h \
+	time.h \
 	fcntl.h \
-	libevdev/libevdev.h \
+	libevdev-1.0/libevdev/libevdev.h \
 	string.h \
 	unistd.h \
+	linux/input.h \
 	weston.h \
+	compositor.h \
 	pixman.h \
+	xkbcommon/xkbcommon.h \
+	wayland-server.h \
+	matrix.h \
+	config-parser.h \
+	zalloc.h \
+	timeline-object.h \
 	,
 dnl to do if not found
 	[],
@@ -74,6 +84,38 @@ dnl *Sigh* these are needed in order for net/if.h to get properly detected.
 #endif
 ]
 )
+
+# ==== Weston Libraries
+AC_ARG_WITH([weston-include-path],
+	[AS_HELP_STRING([--with-weston-include-path],[location of the Weston headers, defaults to /usr/include/weston])],
+	[WESTON_CFLAGS="-I$withval"],
+	[WESTON_CFLAGS="-I/usr/include/weston"])
+AC_SUBST([WESTON_CFLAGS])
+
+AC_ARG_WITH([libweston-include-path],
+	[AS_HELP_STRING([--with-libweston-include-path],[location of the Weston Library headers, defaults to /usr/include/libweston-3])],
+	[LIBWESTON_CFLAGS="-I$withval"],
+	[LIBWESTON_CFLAGS="-I/usr/include/libweston-3"])
+AC_SUBST([LIBWESTON_CFLAGS])
+
+AC_ARG_WITH([weston-lib-path],
+	[AS_HELP_STRING([--with-weston-lib-path],[location of the Weston libraries, defaults to /usr/lib/weston])],
+	[WESTON_LIBS="-L$withval -lweston"],
+	[WESTON_LIBS="-L/usr/lib/weston -lweston"])
+AC_SUBST([WESTON_LIBS])
+
+# ==== EvDev Libraries
+AC_ARG_WITH([evdev-include-path],
+	[AS_HELP_STRING([--with-evdev-include-path],[location of the Evdev headers, defaults to /usr/include/libevdev-1.0])],
+	[EVDEV_CFLAGS="-I$withval"],
+	[EVDEV_CFLAGS="-I/usr/include/libevdev-1.0"])
+AC_SUBST([EVDEV_CFLAGS])
+
+AC_ARG_WITH([evdev-lib-path],
+	[AS_HELP_STRING([--with-evdev-lib-path],[location of the Evdev libraries, defaults to /usr/lib])],
+	[EVDEV_LIBS="-L$withval -levdev"],
+	[EVDEV_LIBS="-L/usr/lib -levdev"])
+AC_SUBST([EVDEV_LIBS])
 
 # ==== OS Support
 AC_ARG_ENABLE(os-linux,
