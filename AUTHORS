@@ -1,1 +1,4 @@
-AUTHOR: Ulf Samuelsson <<ulf@emagii.com>>
+AUTHOR: tarvi-verro - Original Repo
+        https://github.com/tarvi-verro
+AUTHOR: Ulf Samuelsson <ulf@emagii.com>
+	Ported to Autotools, using Autotooler
