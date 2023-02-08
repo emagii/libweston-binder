@@ -9,3 +9,5 @@ config	CONFIG_WESTON
 config  CONFIG_LIBEVDEV
 	bool	"libevdev"
 
+config  CONFIG_PIXMAN
+	bool	"Pixman"
