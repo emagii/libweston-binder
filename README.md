@@ -7,7 +7,7 @@ keybindings from weston.ini.
 
 Building
 --------
-The build system is a simple one. To create the weston module, binder.so:
+The build system is a simple one. To create the weston module, libweston-binder.so:
 
 	make
 
@@ -17,10 +17,10 @@ To install it:
 
 Usage
 -----
-To use this module, add its binder.so to the modules option:
+To use this module, add its libweston-binder.so to the modules option:
 
 	[core]
-	modules=binder.so
+	modules=libweston-binder.so
 
 For each key you want bound, append a similar keybind option to your
 weston.ini:
