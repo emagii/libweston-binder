@@ -128,9 +128,21 @@ process_cleanup(struct weston_process *process, int status)
 	free(process);
 }
 
+// Ubuntu 20.04 definition
+// weston_key_binding_handler_t
+// typedef void (*weston_key_binding_handler_t)(struct weston_keyboard *keyboard,
+//					     uint32_t time, uint32_t key,
+//					     void *data);
 static void
-binder_callback(struct weston_keyboard *keyboard, const struct timespec *time,
-		uint32_t key, void *data)
+binder_callback(
+	struct weston_keyboard *keyboard, 
+#if 1
+	uint32_t time,
+#else
+	const struct timespec *time,
+#endif
+	uint32_t key, 
+	void *data)
 {
 	pid_t spawn = system_nowait("sh", (char * const[]) {"sh", "-c", data, NULL});
 	if (spawn == -1) {
