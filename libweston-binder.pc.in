@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+Name: weston-binder
+URL: https://www.github.com/emagii/weston-binder
+Description: <TBD>
+Version: @WESTON-BINDER_VERSION@
+Libs:	-L${libdir} -lweston-binder
+Libs.private: @WESTON-BINDER_LIBS@
+Cflags: -I${includedir}

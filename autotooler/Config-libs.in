@@ -1,0 +1,11 @@
+# Example of user supplied library
+
+config	CONFIG_CURLPP
+	bool	"cURLPP"
+
+config	CONFIG_WESTON
+	bool	"Weston"
+
+config  CONFIG_LIBEVDEV
+	bool	"libevdev"
+
