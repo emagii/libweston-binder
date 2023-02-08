@@ -1,4 +1,4 @@
-CSOURCES = 
+CSOURCES = src/binder.c
 
 INSTALL_HEADERS = 
 
@@ -6,8 +6,8 @@ INSTALL_HEADERS =
 INSTALL_CONFIG = 
 
 HHEADERS = \
-	$(INSTALL_HEADERS) \
+	$(INSTALL_HEADERS)
 
 # Demos needs to have a separate recipe
-INSTALL_DEMOS = \
+INSTALL_DEMOS =
 
