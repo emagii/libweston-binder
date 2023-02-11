@@ -1,6 +1,6 @@
 #
 # Automatically generated make config: don't edit
-# Wed Feb  8 16:04:35 2023
+# Sat Feb 11 21:18:20 2023
 #
 HAVE_DOT_CONFIG=y
 CONFIG_PROJECT="libweston-binder"
@@ -27,7 +27,7 @@ CONFIG_LIBRARY=y
 # Library Setup
 #
 CONFIG_LIBRARY_NAME="libweston-binder"
-CONFIG_LIBRARY_VERSION="1.0"
+CONFIG_LIBRARY_VERSION="1.0.0"
 CONFIG_LIBRARY_INSTALLDIR="/usr/include/libweston-3"
 # CONFIG_LIBRARY_UNIT_TEST is not set
 CONFIG_COPYRIGHT_DATE="2023"
@@ -51,6 +51,7 @@ CONFIG_SRCDIR="src"
 # CONFIG_CURLPP is not set
 CONFIG_WESTON=y
 CONFIG_LIBEVDEV=y
+CONFIG_PIXMAN=y
 
 #
 # Check Libraries
