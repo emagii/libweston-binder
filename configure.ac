@@ -1,7 +1,7 @@
 AC_INIT([libweston-binder],
-	[1.0],
+	[1.0.0],
 	[Ulf Samuelsson],
-	[libweston-binder-1.0],
+	[libweston-binder-1.0.0],
 	[http://www.emagii.com/])
 
 AC_PREREQ([2.59])
@@ -21,7 +21,7 @@ AM_INIT_AUTOMAKE([1.10 -Wall no-define])
 
 AC_PROG_MAKE_SET
 AM_MAINTAINER_MODE
-AC_SUBST(LIBWESTON_BINDER_VERSION, 1.0)
+AC_SUBST(LIBWESTON_BINDER_VERSION, 1.0.0)
 AC_HEADER_STDC
 AC_ENABLE_SHARED
 AC_DISABLE_STATIC
@@ -85,38 +85,21 @@ dnl *Sigh* these are needed in order for net/if.h to get properly detected.
 ]
 )
 
-# ==== Weston Libraries
-AC_ARG_WITH([weston-include-path],
-	[AS_HELP_STRING([--with-weston-include-path],[location of the Weston headers, defaults to /usr/include/weston])],
-	[WESTON_CFLAGS="-I$withval"],
-	[WESTON_CFLAGS="-I/usr/include/weston"])
-AC_SUBST([WESTON_CFLAGS])
-
-AC_ARG_WITH([libweston-include-path],
-	[AS_HELP_STRING([--with-libweston-include-path],[location of the Weston Library headers, defaults to /usr/include/libweston-3])],
-	[LIBWESTON_CFLAGS="-I$withval"],
-	[LIBWESTON_CFLAGS="-I/usr/include/libweston-3"])
-AC_SUBST([LIBWESTON_CFLAGS])
-
-AC_ARG_WITH([weston-lib-path],
-	[AS_HELP_STRING([--with-weston-lib-path],[location of the Weston libraries, defaults to /usr/lib/weston])],
-	[WESTON_LIBS="-L$withval -lweston"],
-	[WESTON_LIBS="-L/usr/lib/weston -lweston"])
-AC_SUBST([WESTON_LIBS])
-
-# ==== EvDev Libraries
-AC_ARG_WITH([evdev-include-path],
-	[AS_HELP_STRING([--with-evdev-include-path],[location of the Evdev headers, defaults to /usr/include/libevdev-1.0])],
-	[EVDEV_CFLAGS="-I$withval"],
-	[EVDEV_CFLAGS="-I/usr/include/libevdev-1.0"])
-AC_SUBST([EVDEV_CFLAGS])
-
-AC_ARG_WITH([evdev-lib-path],
-	[AS_HELP_STRING([--with-evdev-lib-path],[location of the Evdev libraries, defaults to /usr/lib])],
-	[EVDEV_LIBS="-L$withval -levdev"],
-	[EVDEV_LIBS="-L/usr/lib -levdev"])
-AC_SUBST([EVDEV_LIBS])
-
+PKG_CHECK_MODULES([weston], [weston >= 3],,
+	AC_MSG_ERROR([weston 3 or newer not found.])
+)
+AC_SUBST(WESTON_CFLAGS)
+AC_SUBST(WESTON_LIBS)
+PKG_CHECK_MODULES([libevdev], [libevdev >= 1.0],,
+	AC_MSG_ERROR([libevdev 1.0 or newer not found.])
+)
+AC_SUBST(LIBEVDEV_CFLAGS)
+AC_SUBST(LIBEVDEV_LIBS)
+PKG_CHECK_MODULES([PIXMAN], [pixman-1 >= 0.29.1],,
+	AC_MSG_ERROR([pixman-1 0.29.1 or newer not found.])
+)
+AC_SUBST(PIXMAN_CFLAGS)
+AC_SUBST(PIXMAN_LIBS)
 # ==== OS Support
 AC_ARG_ENABLE(os-linux,
 	[--enable-os-linux	Build for Linux enabled],

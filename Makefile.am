@@ -11,6 +11,7 @@ AM_CPPFLAGS             += $(CPPFLAGS)
 
 LIB_CFLAGS              = $(LIBS)
 
+VERSION                 = 1.0.0
 LIBWESTON_BINDER_VERSION= $(VERSION)
 LIBWESTON_BINDER_LIBS   = $(SLIBS)
 lib_LTLIBRARIES         = libweston-binder.la
@@ -20,24 +21,24 @@ CLEANFILES              =
 pkgconfigdir            = $(libdir)/pkgconfig
 pkgconfig_DATA          = libweston-binder.pc
 
-VERSION_INFO            = -version-info 0:0:0
+VERSION_INFO            = -version-info 1:0:0
+GENERIC_LDFLAGS         = $(VERSION_INFO)
 
 if CONFIG_OS_LINUX
 AM_CFLAGS               += -DOS_LINUX
 endif
 
 
-AM_CFLAGS               += -I/usr/include/libweston-3
-AM_CFLAGS               += -I/usr/include/weston
-AM_CFLAGS               += -I/usr/include/libevdev-1.0
-AM_CFLAGS               += -I/usr/include/pixman-1
+AM_CFLAGS               += ${weston_CFLAGS}
+AM_CFLAGS               += ${libevdev_CFLAGS}
+AM_CFLAGS               += ${pixman_CFLAGS}
 
 AM_CFLAGS               += $(LIB_CFLAGS)
 AM_CFLAGS               += -Isrc
 AM_CFLAGS               += -Isrc/include
 AM_CFLAGS               += -Iinclude
 
-libweston_binder_la_LDFLAGS= $(AM_LDFLAGS)
+libweston_binder_la_LDFLAGS= $(AM_LDFLAGS)  $(GENERIC_LDFLAGS)
 libweston_binder_la_CFLAGS= $(AM_CFLAGS)
 libweston_binder_la_CPPFLAGS= $(AM_CPPFLAGS)
 INSTALLdir              = $(include)//usr/include/libweston-3
